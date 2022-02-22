@@ -1,4 +1,4 @@
-use rust_generic_types_traits_lifetimes::aggregator::{NewsArticle, Summary, Tweet, Pair};
+use rust_generic_types_traits_lifetimes::aggregator::{NewsArticle, Pair, Summary, Tweet};
 
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
@@ -8,6 +8,14 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
         }
     }
     largest
+}
+
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
 }
 
 fn main() {
@@ -45,4 +53,10 @@ fn main() {
 
     let pair = Pair::new(9, 8);
     pair.cmp_display();
+
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+
+    let result = longest(string1.as_str(), string2);
+    println!("The longest string is {}", result);
 }
